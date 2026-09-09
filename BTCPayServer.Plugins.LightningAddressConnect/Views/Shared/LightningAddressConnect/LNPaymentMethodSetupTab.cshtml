@@ -1,0 +1,66 @@
+@model BTCPayServer.Models.StoreViewModels.LightningNodeViewModel
+@{
+    if (Model.CryptoCode != "BTC")
+    {
+        return;
+    }
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const customNodeAccordian = document.getElementById("CustomNodeSupport");
+        const template = document.getElementById("lightning-address-connect");
+        if (customNodeAccordian && template) {
+            customNodeAccordian.appendChild(template.content.cloneNode(true));
+        }
+    });
+</script>
+
+<template id="lightning-address-connect">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="CustomLightningAddressConnectHeader">
+            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#CustomLightningAddressConnectContent" aria-controls="CustomLightningAddressConnectContent" aria-expanded="false">
+                <span><strong>Lightning Address Connect</strong> setup</span>
+                <vc:icon symbol="caret-down"/>
+            </button>
+        </h2>
+        <div id="CustomLightningAddressConnectContent" class="accordion-collapse collapse" aria-labelledby="CustomLightningAddressConnectHeader" data-bs-parent="#CustomNodeSupport">
+            <div class="accordion-body">
+                <p class="my-2">
+                    Receive Lightning payments directly into your own wallet. Paste your Lightning Address — no node, no API key.
+                    BTCPay creates invoices via LNURL-pay and detects settlement with <strong>LUD-21 verify</strong>.
+                </p>
+                <p class="my-2">Connection string:</p>
+                <ul class="pb-2">
+                    <li>
+                        <code><b>type=</b>lnaddress;<b>ln-address=</b>you@getalby.com</code>
+                    </li>
+                </ul>
+                <p class="my-2">Click <strong>Test connection</strong> — BTCPay will probe the address and reject it if LUD-21 verify is missing.</p>
+
+                <p class="my-2 mb-1"><strong>Supported (LUD-21)</strong></p>
+                <ul class="pb-2">
+                    <li><strong>Alby</strong> — <code>you@getalby.com</code></li>
+                    <li><strong>Blink</strong> — <code>you@blink.sv</code> (or use the Blink plugin for Stablesats / API key)</li>
+                    <li><strong>Strike</strong> — <code>you@strike.me</code></li>
+                    <li><strong>LNbits</strong> / <strong>BTCPay</strong> / other self-hosted LNURL stacks with verify enabled</li>
+                    <li><strong>Coinos</strong> — <code>you@coinos.io</code></li>
+                </ul>
+
+                <p class="my-2 mb-1"><strong>Not supported</strong></p>
+                <ul class="pb-2">
+                    <li>
+                        <strong>Wallet of Satoshi</strong> (<code>@@walletofsatoshi.com</code>) —
+                        LNURL-pay works, but they do <em>not</em> advertise LUD-21 verify and offer no merchant API,
+                        so BTCPay cannot detect settlement. Ask Wallet of Satoshi to add LUD-21.
+                    </li>
+                </ul>
+
+                <p class="my-2 text-muted">
+                    Receive-only. Amountless / top-up invoices are not supported. Settlement is polled (typically seconds, up to about a minute).
+                    Clearnet only (no Tor <code>.onion</code> addresses).
+                </p>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.btcpay
+*.btcpay.json
+.DS_Store
+**/node_modules/
