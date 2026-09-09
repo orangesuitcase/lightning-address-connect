@@ -17,15 +17,15 @@ public static class SupportedWallets
         bool Lud21Supported,
         string Notes);
 
-    /// <summary>Major wallets we have verified. Wallet of Satoshi is intentionally listed as unsupported.</summary>
+    /// <summary>Major wallets we have checked. Some are not supported yet pending LUD-21.</summary>
     public static IReadOnlyList<WalletInfo> All { get; } = new[]
     {
         new WalletInfo("Alby", "getalby.com", true,
             "Custodial Alby addresses support LUD-21. Alby Hub users can also connect via the Nostr (NWC) plugin."),
         new WalletInfo("Blink", "blink.sv", true,
             "Works with Lightning Address Connect. Blink also ships a dedicated plugin with extra features (Stablesats, API key mode)."),
-        new WalletInfo("Strike", "strike.me", true,
-            "LNURL-pay + LUD-21. Strike also has a dedicated BTCPay plugin for full API access."),
+        new WalletInfo("Strike", "strike.me", false,
+            "Not supported yet for Lightning Address Connect. Strike works great with BTCPay via the dedicated Strike plugin (API key). We’ll add address support here as soon as Strike offers LUD-21 verify."),
         new WalletInfo("LNbits", "*", true,
             "Self-hosted LNbits Lightning Addresses expose LUD-21 when enabled on the instance."),
         new WalletInfo("BTCPay Server", "*", true,
@@ -33,7 +33,7 @@ public static class SupportedWallets
         new WalletInfo("Coinos", "coinos.io", true,
             "Supports LNURL-pay with verify for settlement detection."),
         new WalletInfo("Wallet of Satoshi", "walletofsatoshi.com", false,
-            "Not supported: LNURL-pay works, but Wallet of Satoshi does not advertise LUD-21 verify and offers no merchant API. Ask them to add LUD-21."),
+            "Not supported yet for Lightning Address Connect. Wallet of Satoshi is a popular Lightning wallet; we’ll add support here as soon as they offer LUD-21 verify (needed so BTCPay can detect payment settlement)."),
     };
 
     public static WalletInfo? Match(string lightningAddress)

@@ -24,7 +24,7 @@ The Builder clones submodules recursively. Your `.csproj` must keep the `Project
 In `BTCPayServer.Plugins.LightningAddressConnect.csproj`:
 
 ```xml
-<Version>1.0.0</Version>
+<Version>1.0.1</Version>
 ```
 
 Increment for every published build (`1.0.1`, `1.1.0`, …). The Builder packages whatever `<Version>` is in the project file.
@@ -52,7 +52,7 @@ Increment for every published build (`1.0.1`, `1.1.0`, …). The Builder package
 4. Smoke-test:
    - Setup tab appears under Lightning custom node
    - `type=lnaddress;ln-address=you@getalby.com` → Test connection succeeds
-   - `you@walletofsatoshi.com` → Test connection fails with a clear LUD-21 / unsupported message
+   - `you@walletofsatoshi.com` → Test connection explains it is not supported yet
    - Create a store invoice, pay it, confirm it settles
    - Greenfield: `POST .../lightning-address-connect/probe` and `.../configure`
 

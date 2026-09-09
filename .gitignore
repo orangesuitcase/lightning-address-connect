@@ -4,7 +4,8 @@ obj/
 .idea/
 *.user
 *.suo
-*.btcpay
-*.btcpay.json
 .DS_Store
 **/node_modules/
+# Ad-hoc packs at repo root only
+/*.btcpay
+/*.btcpay.json

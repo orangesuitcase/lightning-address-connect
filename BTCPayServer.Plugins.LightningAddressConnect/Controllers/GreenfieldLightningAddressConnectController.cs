@@ -48,7 +48,7 @@ public class GreenfieldLightningAddressConnectController : ControllerBase
         _handlers = handlers;
     }
 
-    /// <summary>List known wallet compatibility (including Wallet of Satoshi as unsupported).</summary>
+    /// <summary>List known wallet compatibility (including wallets not supported yet).</summary>
     [HttpGet("~/api/v1/lightning-address-connect/wallets")]
     [Authorize(AuthenticationSchemes = AuthenticationSchemes.Greenfield)]
     public IActionResult GetSupportedWallets()

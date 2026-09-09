@@ -27,11 +27,10 @@ public static class LnAddressResolver
         var domain = parts[1].Trim().ToLowerInvariant();
         lightningAddress = $"{username}@{domain}";
 
-        // Known-unsupported providers: fail fast with a clear message before probing.
+        // Providers not supported yet: fail fast with a friendly message before probing.
         var known = SupportedWallets.Match(lightningAddress);
         if (known is { Lud21Supported: false })
-            throw new FormatException(
-                $"{known.Name} ({known.Domain}) is not supported: {known.Notes}");
+            throw new FormatException(known.Notes);
 
         Uri endpoint;
         try
