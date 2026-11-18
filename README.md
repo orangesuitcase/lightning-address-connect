@@ -15,7 +15,7 @@ In the UI: **Store → Lightning → Settings → Use custom node**, paste the c
 
 ## Supported wallets (summary)
 
-Alby, Blink (`@blink.sv`), LNbits, BTCPay, Coinos — Strike and Wallet of Satoshi not supported yet. Full table and API docs: [docs/README.md](./docs/README.md).
+Alby, Blink (`@blink.sv`), Speed, Stacker News, LNbits, BTCPay — Strike, Wallet of Satoshi, and Coinos not supported yet (no LUD-21). Full table and API docs: [docs/README.md](./docs/README.md).
 
 ## Development
 

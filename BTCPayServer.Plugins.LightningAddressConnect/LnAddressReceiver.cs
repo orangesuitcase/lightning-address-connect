@@ -26,9 +26,9 @@ public sealed class LnAddressReceiver
 
     public const string VerifyUnsupportedMessage =
         "This Lightning Address is not supported yet for Lightning Address Connect. BTCPay needs LUD-21 verify " +
-        "to detect settlement without a node or API key. Supported today: Alby, Blink, LNbits, BTCPay, and similar. " +
-        "Strike users can use the dedicated Strike BTCPay plugin. Wallet of Satoshi and Strike addresses will work " +
-        "here once those wallets offer LUD-21.";
+        "to detect settlement without a node or API key. Supported today: Alby, Blink, Speed, Stacker News, LNbits, " +
+        "BTCPay, and any other address that returns verify. Strike users can use the dedicated Strike BTCPay plugin. " +
+        "Strike, Wallet of Satoshi, Coinos, and similar addresses will work here once they offer LUD-21.";
 
     public LnAddressReceiver(ResolvedLnAddress resolved, Network network, HttpClient http, ILogger logger)
     {
@@ -77,7 +77,9 @@ public sealed class LnAddressReceiver
     {
         if (amount is null || amount.MilliSatoshi <= 0)
             throw new NotSupportedException(
-                "Lightning Address Connect requires an invoice amount; amountless/top-up invoices are not supported.");
+                "Lightning Address Connect cannot create amountless BOLT11 invoices (LNURL-pay always requires an amount). " +
+                "For crowdfund, fundraising, or other top-up invoices, enable the LNURL payment method on the store so " +
+                "wallets pick the amount through BTCPay's LNURL callback.");
 
         var meta = await LnAddressResolver.GetJson(_http, _resolved.PayEndpoint, ct);
         var callback = meta["callback"]?.Value<string>()
@@ -108,8 +110,15 @@ public sealed class LnAddressReceiver
         if (bolt11.MinimumAmount != LightMoney.MilliSatoshis(msat))
             throw new Exception(
                 $"Lightning Address returned an invoice for {bolt11.MinimumAmount.MilliSatoshi} msat but {msat} was requested.");
+        // LNURL-pay backends cannot mint a bolt11 whose d-hash matches BTCPay's LNURL metadata
+        // (DescriptionHashOnly). Rejecting that mismatch broke crowdfund; BTCPay/LUD no longer require it.
         if (p?.DescriptionHash is { } dh && dh != bolt11.DescriptionHash)
-            throw new Exception("Lightning Address returned an invoice with a mismatched or missing description hash.");
+        {
+            _logger.LogDebug(
+                "Accepting LNURL invoice whose description hash does not match BTCPay's request " +
+                "(expected {Expected}, got {Actual}). Expected when the backend is a Lightning Address.",
+                dh, bolt11.DescriptionHash);
+        }
 
         var paymentHash = bolt11.PaymentHash?.ToString() ?? throw new Exception("Invoice has no payment hash.");
         var verifyUrl = json["verify"]?.Value<string>();

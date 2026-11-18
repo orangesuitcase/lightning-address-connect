@@ -9,7 +9,7 @@
     <PropertyGroup>
         <Product>Lightning Address Connect</Product>
         <Description>Connect any LUD-21 Lightning Address as your BTCPay Lightning backend — no node, no API key. Paste your address and receive payments directly into your wallet.</Description>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <RootNamespace>BTCPayServer.Plugins.LightningAddressConnect</RootNamespace>
         <AssemblyName>BTCPayServer.Plugins.LightningAddressConnect</AssemblyName>
