@@ -23,7 +23,7 @@ public static class SupportedWallets
         new WalletInfo("Alby", "getalby.com", true,
             "Custodial Alby addresses support LUD-21. Alby Hub users can also connect via the Nostr (NWC) plugin."),
         new WalletInfo("Blink", "blink.sv", true,
-            "Works with Lightning Address Connect. Blink also ships a dedicated plugin with extra features (Stablesats, API key mode)."),
+            "Works with Lightning Address Connect (including crowdfund via LNURL). Blink’s dedicated plugin also supports amountless BOLT11, Stablesats, and API key mode."),
         new WalletInfo("Strike", "strike.me", false,
             "Not supported yet for Lightning Address Connect. Strike works great with BTCPay via the dedicated Strike plugin (API key). We’ll add address support here as soon as Strike offers LUD-21 verify."),
         new WalletInfo("LNbits", "*", true,

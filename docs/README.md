@@ -44,7 +44,7 @@ Any other address that returns a LUD-21 `verify` URL on the LNURL-pay callback a
 
 ### Blink plugin vs this plugin
 
-Both can be installed together (no conflict). For “paste `you@blink.sv` and receive,” Lightning Address Connect is enough. Keep the Blink plugin if you need custodial API keys, Stablesats/USD options, or sending via Blink.
+Both can be installed together (no conflict). For “paste `you@blink.sv` and receive,” Lightning Address Connect is enough. Keep the Blink plugin if you need custodial API keys, Stablesats/USD options, sending via Blink, or native amountless BOLT11 invoices (BTC-LN top-up without LNURL).
 
 ### Strike and Wallet of Satoshi
 
@@ -103,7 +103,7 @@ Content-Type: application/json
 ## Limitations
 
 - **Receive-only** — no send, balance, or channels
-- **Amountless / top-up** invoices are not supported
+- **Amountless BOLT11** (BTC-LN top-up without an amount in the invoice) is not supported — LNURL-pay always needs an amount. **Crowdfund / fundraising / top-up still work** when the store’s **LNURL** payment method is enabled: wallets choose an amount and BTCPay’s LNURL callback creates a normal invoice through this plugin.
 - **Clearnet only** — no Tor `.onion` addresses
 - Settlement is **polled** (usually seconds; occasionally up to about a minute)
 - Bound by the address `minSendable` / `maxSendable`
