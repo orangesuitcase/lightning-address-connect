@@ -34,21 +34,27 @@ Aliases: `address=` or `value=` instead of `ln-address=`.
 |--------|---------|--------|
 | Alby | `you@getalby.com` | Supported |
 | Blink | `you@blink.sv` | Supported (address-only; see note below) |
+| Speed | `you@speed.app` | Supported |
+| Stacker News | `you@stacker.news` | Supported |
 | LNbits | self-hosted | Supported when LUD-21 is enabled |
 | BTCPay Server | any BTCPay host | Supported (LUD-21 on by default) |
-| Coinos | `you@coinos.io` | Supported |
-| Strike | `you@strike.me` | Not supported yet — use the Strike BTCPay plugin |
-| Wallet of Satoshi | `you@walletofsatoshi.com` | Not supported yet |
+| Strike | `you@strike.me` | Not supported — no LUD-21; use the Strike BTCPay plugin |
+| Wallet of Satoshi | `you@walletofsatoshi.com` | Not supported — no LUD-21 yet |
+| Coinos | `you@coinos.io` | Not supported right now — no LUD-21 verify on callbacks |
+| ZBD | `you@zbd.gg` | Not supported — no LUD-21 |
 
-Any other address that returns a LUD-21 `verify` URL on the LNURL-pay callback also works.
+Any other address that returns a LUD-21 `verify` URL on the LNURL-pay callback also works. Crowdfund/fundraising uses the same path for every LUD-21 provider (not Blink-specific).
 
 ### Blink plugin vs this plugin
 
 Both can be installed together (no conflict). For “paste `you@blink.sv` and receive,” Lightning Address Connect is enough. Keep the Blink plugin if you need custodial API keys, Stablesats/USD options, sending via Blink, or native amountless BOLT11 invoices (BTC-LN top-up without LNURL).
 
-### Strike and Wallet of Satoshi
+### Strike, Wallet of Satoshi, Coinos
 
-Both are excellent Lightning wallets. This plugin isn’t compatible with them **yet**, because settlement detection needs LUD-21 verify on the Lightning Address. For Strike today, use the dedicated **Strike BTCPay plugin** with an API key. We’ll happily add both here once LUD-21 is available on their addresses.
+These wallets accept LNURL-pay, but their callbacks do **not** return LUD-21 `verify`, so BTCPay cannot detect settlement through an address alone. That is a different limitation from the crowdfund description-hash issue (which affected all LNURL backends and is fixed for every supported provider).
+
+- **Strike:** use the dedicated **Strike BTCPay plugin** with an API key.
+- **Wallet of Satoshi / Coinos:** use another LUD-21 address, or a dedicated plugin/node, until they add verify.
 
 ## Greenfield API
 

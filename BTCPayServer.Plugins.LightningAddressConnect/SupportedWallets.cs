@@ -21,19 +21,25 @@ public static class SupportedWallets
     public static IReadOnlyList<WalletInfo> All { get; } = new[]
     {
         new WalletInfo("Alby", "getalby.com", true,
-            "Custodial Alby addresses support LUD-21. Alby Hub users can also connect via the Nostr (NWC) plugin."),
+            "Custodial Alby addresses support LUD-21 (including crowdfund via store LNURL). Alby Hub users can also connect via the Nostr (NWC) plugin."),
         new WalletInfo("Blink", "blink.sv", true,
             "Works with Lightning Address Connect (including crowdfund via LNURL). Blink’s dedicated plugin also supports amountless BOLT11, Stablesats, and API key mode."),
+        new WalletInfo("Speed", "speed.app", true,
+            "Speed Lightning Addresses return LUD-21 verify; crowdfund works when store LNURL is enabled."),
+        new WalletInfo("Stacker News", "stacker.news", true,
+            "stacker.news Lightning Addresses return LUD-21 verify."),
         new WalletInfo("Strike", "strike.me", false,
-            "Not supported yet for Lightning Address Connect. Strike works great with BTCPay via the dedicated Strike plugin (API key). We’ll add address support here as soon as Strike offers LUD-21 verify."),
+            "Not supported yet — Strike LNURL-pay does not return LUD-21 verify (re-checked; still missing). Use the dedicated Strike BTCPay plugin (API key). Address support here needs Strike to add verify."),
         new WalletInfo("LNbits", "*", true,
             "Self-hosted LNbits Lightning Addresses expose LUD-21 when enabled on the instance."),
         new WalletInfo("BTCPay Server", "*", true,
             "Another BTCPay store's Lightning Address works as a receive backend (LUD-21 enabled by default)."),
-        new WalletInfo("Coinos", "coinos.io", true,
-            "Supports LNURL-pay with verify for settlement detection."),
+        new WalletInfo("Coinos", "coinos.io", false,
+            "Not supported right now — Coinos LNURL-pay callbacks no longer return LUD-21 verify (needed for settlement detection). Re-enable here if Coinos restores verify."),
         new WalletInfo("Wallet of Satoshi", "walletofsatoshi.com", false,
-            "Not supported yet for Lightning Address Connect. Wallet of Satoshi is a popular Lightning wallet; we’ll add support here as soon as they offer LUD-21 verify (needed so BTCPay can detect payment settlement)."),
+            "Not supported yet — Wallet of Satoshi LNURL-pay does not return LUD-21 verify. We’ll add it as soon as they offer verify."),
+        new WalletInfo("ZBD", "zbd.gg", false,
+            "Not supported — ZBD LNURL-pay does not return LUD-21 verify."),
     };
 
     public static WalletInfo? Match(string lightningAddress)

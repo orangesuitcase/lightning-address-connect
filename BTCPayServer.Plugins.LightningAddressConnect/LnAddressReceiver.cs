@@ -26,9 +26,9 @@ public sealed class LnAddressReceiver
 
     public const string VerifyUnsupportedMessage =
         "This Lightning Address is not supported yet for Lightning Address Connect. BTCPay needs LUD-21 verify " +
-        "to detect settlement without a node or API key. Supported today: Alby, Blink, LNbits, BTCPay, and similar. " +
-        "Strike users can use the dedicated Strike BTCPay plugin. Wallet of Satoshi and Strike addresses will work " +
-        "here once those wallets offer LUD-21.";
+        "to detect settlement without a node or API key. Supported today: Alby, Blink, Speed, Stacker News, LNbits, " +
+        "BTCPay, and any other address that returns verify. Strike users can use the dedicated Strike BTCPay plugin. " +
+        "Strike, Wallet of Satoshi, Coinos, and similar addresses will work here once they offer LUD-21.";
 
     public LnAddressReceiver(ResolvedLnAddress resolved, Network network, HttpClient http, ILogger logger)
     {

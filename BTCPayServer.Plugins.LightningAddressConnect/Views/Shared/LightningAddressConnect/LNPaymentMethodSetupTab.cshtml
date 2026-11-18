@@ -42,20 +42,22 @@
                 <ul class="pb-2">
                     <li><strong>Alby</strong> — <code>you@getalby.com</code></li>
                     <li><strong>Blink</strong> — <code>you@blink.sv</code> (or use the Blink plugin for Stablesats / API key)</li>
+                    <li><strong>Speed</strong> — <code>you@speed.app</code></li>
+                    <li><strong>Stacker News</strong> — <code>you@stacker.news</code></li>
                     <li><strong>LNbits</strong> / <strong>BTCPay</strong> / other self-hosted LNURL stacks with verify enabled</li>
-                    <li><strong>Coinos</strong> — <code>you@coinos.io</code></li>
                 </ul>
 
-                <p class="my-2 mb-1"><strong>Not supported yet</strong></p>
+                <p class="my-2 mb-1"><strong>Not supported yet</strong> (LNURL works, but no LUD-21 <code>verify</code>)</p>
                 <ul class="pb-2">
                     <li>
                         <strong>Strike</strong> (<code>@@strike.me</code>) —
-                        Not supported yet here. Use the dedicated Strike BTCPay plugin with your API key for now.
-                        We’ll add Lightning Address support when Strike offers LUD-21 verify.
+                        Use the dedicated Strike BTCPay plugin with your API key for now.
+                        We’ll add address support when Strike offers LUD-21 verify.
                     </li>
                     <li>
-                        <strong>Wallet of Satoshi</strong> (<code>@@walletofsatoshi.com</code>) —
-                        Not supported yet here. We’ll add it as soon as Wallet of Satoshi offers LUD-21 verify
+                        <strong>Wallet of Satoshi</strong> (<code>@@walletofsatoshi.com</code>) /
+                        <strong>Coinos</strong> (<code>@@coinos.io</code>) —
+                        We’ll add them as soon as their addresses return LUD-21 verify
                         (needed so BTCPay can detect when a payment settles).
                     </li>
                 </ul>
